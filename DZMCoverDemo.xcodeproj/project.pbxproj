@@ -90,13 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AF6DD84A1DA9F2BA008F8159 /* (ShowFinder)针对返回View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "(ShowFinder)针对返回View";
-			sourceTree = "<group>";
-		};
 		AF6DD8521DA9F2DD008F8159 /* (ShowFinder)针对返回Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				AF6DD8521DA9F2DD008F8159 /* (ShowFinder)针对返回Controller */,
-				AF6DD84A1DA9F2BA008F8159 /* (ShowFinder)针对返回View */,
 				AFE31BFE1DA8922B00167D92 /* AppDelegate.h */,
 				AFE31BFF1DA8922B00167D92 /* AppDelegate.m */,
 				AFE31C011DA8922B00167D92 /* ViewController.h */,
