@@ -289,7 +289,7 @@
         self.isLeft = NO;
         
         // 获取下一个显示控制器
-        if ([self.delegate respondsToSelector:@selector(coverController:getBelowControllerWithcurrentController:)]) {
+        if ([self.delegate respondsToSelector:@selector(coverController:getBelowControllerWithCurrentController:)]) {
             
             vc = [self.delegate coverController:self getBelowControllerWithCurrentController:self.currentController];
         }
