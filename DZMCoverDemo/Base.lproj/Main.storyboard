@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpw-g7-GDD">
+                                <rect key="frame" x="20" y="84" width="266" height="30"/>
+                                <color key="backgroundColor" red="0.25637687983923585" green="1" blue="0.21606001221791693" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="小说覆盖翻页(Controller)"/>
+                                <connections>
+                                    <action selector="clickBook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m9e-I3-Rg7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O52-db-jh0">
+                                <rect key="frame" x="20" y="151" width="266" height="30"/>
+                                <color key="backgroundColor" red="0.25637687980000001" green="1" blue="0.21606001220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="自定义翻页(Controller)"/>
+                                <connections>
+                                    <action selector="clickCustom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RDX-3N-9RT"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="使用方式" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJU-0i-LnD">
+                                <rect key="frame" x="20" y="37" width="142" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPI-4c-Ety">
+                                <rect key="frame" x="20" y="221" width="266" height="30"/>
+                                <color key="backgroundColor" red="0.25637687980000001" green="1" blue="0.21606001220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="可以设置代理给自己(View)"/>
+                                <connections>
+                                    <action selector="clickView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0S8-td-DRc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="666" y="130"/>
+        </scene>
+    </scenes>
+</document>
