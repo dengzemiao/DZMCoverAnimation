@@ -40,9 +40,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPI-4c-Ety">
-                                <rect key="frame" x="20" y="218" width="373" height="30"/>
+                                <rect key="frame" x="20" y="218" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.25637687980000001" green="1" blue="0.21606001220000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="可以设置代理给自己(View)(需要切换文件 不然点击崩溃)"/>
+                                <state key="normal" title="可以代理给自己(View)(需要切换文件 不然点击崩溃)"/>
                                 <connections>
                                     <action selector="clickView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0S8-td-DRc"/>
                                 </connections>
