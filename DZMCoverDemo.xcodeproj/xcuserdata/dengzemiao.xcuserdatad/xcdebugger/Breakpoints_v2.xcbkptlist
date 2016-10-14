@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DZMCoverDemo/(ShowFinder)&#x9488;&#x5bf9;&#x8fd4;&#x56de;View/DZMCoverController/DZMCoverController.m"
-            timestampString = "497674789.387845"
+            filePath = "DZMCoverDemo/(ShowFinder)&#x9488;&#x5bf9;&#x8fd4;&#x56de;View/TestViewController.m"
+            timestampString = "498105587.735186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "-setCurrentView:"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

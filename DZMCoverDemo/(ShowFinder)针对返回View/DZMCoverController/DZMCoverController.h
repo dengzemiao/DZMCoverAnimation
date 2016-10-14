@@ -66,6 +66,11 @@
 @property (nonatomic,assign) BOOL gestureRecognizerEnabled;
 
 /**
+ *  当前手势操作是否带动画效果 default: YES
+ */
+@property (nonatomic,assign) BOOL openAnimate;
+
+/**
  *  当前显示的View
  */
 @property (nonatomic,strong,readonly,nullable) UIView *currentView;

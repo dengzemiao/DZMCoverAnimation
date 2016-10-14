@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF6DD85C1DA9F2DD008F8159 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6DD8551DA9F2DD008F8159 /* DZMCoverController.m */; };
-		AF6DD85D1DA9F2DD008F8159 /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6DD8571DA9F2DD008F8159 /* TempViewController.m */; };
-		AF6DD85E1DA9F2DD008F8159 /* ViewControllerBook.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6DD8591DA9F2DD008F8159 /* ViewControllerBook.m */; };
-		AF6DD85F1DA9F2DD008F8159 /* ViewControllerCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = AF6DD85B1DA9F2DD008F8159 /* ViewControllerCustom.m */; };
+		AF7902641DB07D4E004FC431 /* DZMCoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF79025D1DB07D4E004FC431 /* DZMCoverController.m */; };
+		AF7902651DB07D4E004FC431 /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF79025F1DB07D4E004FC431 /* TempViewController.m */; };
+		AF7902661DB07D4E004FC431 /* ViewControllerBook.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7902611DB07D4E004FC431 /* ViewControllerBook.m */; };
+		AF7902671DB07D4E004FC431 /* ViewControllerCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = AF7902631DB07D4E004FC431 /* ViewControllerCustom.m */; };
 		AFE31BFD1DA8922B00167D92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE31BFC1DA8922B00167D92 /* main.m */; };
 		AFE31C001DA8922B00167D92 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE31BFF1DA8922B00167D92 /* AppDelegate.m */; };
 		AFE31C031DA8922B00167D92 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFE31C021DA8922B00167D92 /* ViewController.m */; };
@@ -39,14 +39,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AF6DD8541DA9F2DD008F8159 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
-		AF6DD8551DA9F2DD008F8159 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
-		AF6DD8561DA9F2DD008F8159 /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
-		AF6DD8571DA9F2DD008F8159 /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
-		AF6DD8581DA9F2DD008F8159 /* ViewControllerBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerBook.h; sourceTree = "<group>"; };
-		AF6DD8591DA9F2DD008F8159 /* ViewControllerBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerBook.m; sourceTree = "<group>"; };
-		AF6DD85A1DA9F2DD008F8159 /* ViewControllerCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCustom.h; sourceTree = "<group>"; };
-		AF6DD85B1DA9F2DD008F8159 /* ViewControllerCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCustom.m; sourceTree = "<group>"; };
+		AF79025C1DB07D4E004FC431 /* DZMCoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZMCoverController.h; sourceTree = "<group>"; };
+		AF79025D1DB07D4E004FC431 /* DZMCoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZMCoverController.m; sourceTree = "<group>"; };
+		AF79025E1DB07D4E004FC431 /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
+		AF79025F1DB07D4E004FC431 /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
+		AF7902601DB07D4E004FC431 /* ViewControllerBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerBook.h; sourceTree = "<group>"; };
+		AF7902611DB07D4E004FC431 /* ViewControllerBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerBook.m; sourceTree = "<group>"; };
+		AF7902621DB07D4E004FC431 /* ViewControllerCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerCustom.h; sourceTree = "<group>"; };
+		AF7902631DB07D4E004FC431 /* ViewControllerCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerCustom.m; sourceTree = "<group>"; };
 		AFE31BF81DA8922B00167D92 /* DZMCoverDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZMCoverDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE31BFC1DA8922B00167D92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AFE31BFE1DA8922B00167D92 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -90,25 +90,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AF6DD8521DA9F2DD008F8159 /* (ShowFinder)针对返回Controller */ = {
+		AF79025A1DB07D4E004FC431 /* (ShowFinder)针对返回Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AF6DD8531DA9F2DD008F8159 /* DZMCoverController */,
-				AF6DD8561DA9F2DD008F8159 /* TempViewController.h */,
-				AF6DD8571DA9F2DD008F8159 /* TempViewController.m */,
-				AF6DD8581DA9F2DD008F8159 /* ViewControllerBook.h */,
-				AF6DD8591DA9F2DD008F8159 /* ViewControllerBook.m */,
-				AF6DD85A1DA9F2DD008F8159 /* ViewControllerCustom.h */,
-				AF6DD85B1DA9F2DD008F8159 /* ViewControllerCustom.m */,
+				AF79025B1DB07D4E004FC431 /* DZMCoverController */,
+				AF79025E1DB07D4E004FC431 /* TempViewController.h */,
+				AF79025F1DB07D4E004FC431 /* TempViewController.m */,
+				AF7902601DB07D4E004FC431 /* ViewControllerBook.h */,
+				AF7902611DB07D4E004FC431 /* ViewControllerBook.m */,
+				AF7902621DB07D4E004FC431 /* ViewControllerCustom.h */,
+				AF7902631DB07D4E004FC431 /* ViewControllerCustom.m */,
 			);
 			path = "(ShowFinder)针对返回Controller";
 			sourceTree = "<group>";
 		};
-		AF6DD8531DA9F2DD008F8159 /* DZMCoverController */ = {
+		AF79025B1DB07D4E004FC431 /* DZMCoverController */ = {
 			isa = PBXGroup;
 			children = (
-				AF6DD8541DA9F2DD008F8159 /* DZMCoverController.h */,
-				AF6DD8551DA9F2DD008F8159 /* DZMCoverController.m */,
+				AF79025C1DB07D4E004FC431 /* DZMCoverController.h */,
+				AF79025D1DB07D4E004FC431 /* DZMCoverController.m */,
 			);
 			path = DZMCoverController;
 			sourceTree = "<group>";
@@ -136,7 +136,7 @@
 		AFE31BFA1DA8922B00167D92 /* DZMCoverDemo */ = {
 			isa = PBXGroup;
 			children = (
-				AF6DD8521DA9F2DD008F8159 /* (ShowFinder)针对返回Controller */,
+				AF79025A1DB07D4E004FC431 /* (ShowFinder)针对返回Controller */,
 				AFE31BFE1DA8922B00167D92 /* AppDelegate.h */,
 				AFE31BFF1DA8922B00167D92 /* AppDelegate.m */,
 				AFE31C011DA8922B00167D92 /* ViewController.h */,
@@ -306,11 +306,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF6DD85F1DA9F2DD008F8159 /* ViewControllerCustom.m in Sources */,
+				AF7902671DB07D4E004FC431 /* ViewControllerCustom.m in Sources */,
 				AFE31C031DA8922B00167D92 /* ViewController.m in Sources */,
-				AF6DD85E1DA9F2DD008F8159 /* ViewControllerBook.m in Sources */,
-				AF6DD85D1DA9F2DD008F8159 /* TempViewController.m in Sources */,
-				AF6DD85C1DA9F2DD008F8159 /* DZMCoverController.m in Sources */,
+				AF7902661DB07D4E004FC431 /* ViewControllerBook.m in Sources */,
+				AF7902651DB07D4E004FC431 /* TempViewController.m in Sources */,
+				AF7902641DB07D4E004FC431 /* DZMCoverController.m in Sources */,
 				AFE31C001DA8922B00167D92 /* AppDelegate.m in Sources */,
 				AFE31BFD1DA8922B00167D92 /* main.m in Sources */,
 			);

@@ -27,6 +27,9 @@
     // 设置代理
     self.delegate = self;
     
+    // 可以设置动画是否开启
+//    self.openAnimate = NO;
+    
     // 初始化显示View
     UIView *view = [[UIView alloc] init];
     view.backgroundColor = ViewColor;
