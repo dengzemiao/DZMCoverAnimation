@@ -38,6 +38,10 @@
     coverVC.delegate = self;
     [self.view addSubview:coverVC.view];
     [self addChildViewController:coverVC];
+    
+    // 可以设置无动画
+//    coverVC.openAnimate = NO;
+    
     self.coverVC = coverVC;
     
     // 初始化显示控制器

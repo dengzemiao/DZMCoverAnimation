@@ -64,6 +64,9 @@
  */
 - (void)didInit
 {
+    // 动画效果开启
+    self.openAnimate = YES;
+    
     // 设置背景颜色
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -118,41 +121,52 @@
         
     }else if (pan.state == UIGestureRecognizerStateChanged) { // 手势移动
         
-        if (self.tempController) {
+        if (self.openAnimate) {
             
-            if (self.isLeft) {
+            if (self.tempController) {
                 
-                self.tempController.view.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
-                
-            }else{
-                
-                self.currentController.view.frame = CGRectMake(tempPoint.x > 0 ? 0 : tempPoint.x, 0, ViewWidth, ViewHeight);
+                if (self.isLeft) {
+                    
+                    self.tempController.view.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
+                    
+                }else{
+                    
+                    self.currentController.view.frame = CGRectMake(tempPoint.x > 0 ? 0 : tempPoint.x, 0, ViewWidth, ViewHeight);
+                }
             }
         }
         
     }else{ // 手势结束
         
-        if (self.tempController) {
+        if (self.openAnimate) { // 动画
             
-            BOOL isSuccess = YES;
-            
-            if (self.isLeft) {
+            if (self.tempController) {
                 
-                if (self.tempController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                BOOL isSuccess = YES;
+                
+                if (self.isLeft) {
                     
-                    isSuccess = NO;
+                    if (self.tempController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                        
+                        isSuccess = NO;
+                    }
+                    
+                }else{
+                    
+                    if (self.currentController.view.frame.origin.x >= -1) {
+                        
+                        isSuccess = NO;
+                    }
                 }
                 
-            }else{
-                
-                if (self.currentController.view.frame.origin.x >= -1) {
-                    
-                    isSuccess = NO;
-                }
+                // 手势结束
+                [self GestureSuccess:isSuccess animated:YES];
             }
             
+        }else{ // 无动画
+            
             // 手势结束
-            [self GestureSuccess:isSuccess animated:YES];
+            [self GestureSuccess:YES animated:self.openAnimate];
         }
     }
 }
@@ -173,7 +187,7 @@
     [self addController:self.tempController];
     
     // 手势结束
-    [self GestureSuccess:YES animated:YES];
+    [self GestureSuccess:YES animated:self.openAnimate];
 }
 
 /**
@@ -183,47 +197,77 @@
 {
     if (self.tempController) {
         
-        NSTimeInterval timer = animated ? AnimateDuration : 0;
-        
-        if (self.isLeft) {
+        if (self.isLeft) { // 左边
             
-            __weak DZMCoverController *weakSelf = self;
-            
-            [UIView animateWithDuration:timer animations:^{
+            if (animated) {
+                
+                __weak DZMCoverController *weakSelf = self;
+                
+                [UIView animateWithDuration:AnimateDuration animations:^{
+                    
+                    if (isSuccess) {
+                        
+                        weakSelf.tempController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                        
+                    }else{
+                        
+                        weakSelf.tempController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                    }
+                    
+                } completion:^(BOOL finished) {
+                    
+                    [weakSelf animateSuccess:isSuccess];
+                }];
+                
+            }else{
                 
                 if (isSuccess) {
                     
-                    weakSelf.tempController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                    self.tempController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
                     
                 }else{
                     
-                    weakSelf.tempController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                    self.tempController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
                 }
                 
-            } completion:^(BOOL finished) {
+                [self animateSuccess:isSuccess];
+            }
+            
+        }else{ // 右边
+            
+            if (animated) {
                 
-                [weakSelf animateSuccess:isSuccess];
-            }];
-            
-        }else{
-            
-            __weak DZMCoverController *weakSelf = self;
-            
-            [UIView animateWithDuration:timer animations:^{
+                __weak DZMCoverController *weakSelf = self;
+                
+                [UIView animateWithDuration:AnimateDuration animations:^{
+                    
+                    if (isSuccess) {
+                        
+                        weakSelf.currentController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                        
+                    }else{
+                        
+                        weakSelf.currentController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                    }
+                    
+                } completion:^(BOOL finished) {
+                    
+                    [weakSelf animateSuccess:isSuccess];
+                }];
+                
+            }else{
                 
                 if (isSuccess) {
                     
-                    weakSelf.currentController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                    self.currentController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
                     
                 }else{
                     
-                    weakSelf.currentController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                    self.currentController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
                 }
                 
-            } completion:^(BOOL finished) {
-                
-                [weakSelf animateSuccess:isSuccess];
-            }];
+                [self animateSuccess:isSuccess];
+            }
         }
     }
 }
