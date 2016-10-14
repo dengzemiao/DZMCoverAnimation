@@ -339,6 +339,11 @@
         }
     }
     
+    if (!vc) {
+        
+        self.isAnimateChange = NO;
+    }
+    
     return vc;
 }
 
@@ -372,6 +377,11 @@
             
             vc = [self.delegate coverController:self getBelowControllerWithCurrentController:self.currentController];
         }
+    }
+    
+    if (!vc) {
+        
+        self.isAnimateChange = NO;
     }
     
     return vc;
