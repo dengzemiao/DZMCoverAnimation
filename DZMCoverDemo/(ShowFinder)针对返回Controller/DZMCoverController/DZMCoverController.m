@@ -17,7 +17,7 @@
 // View中间X
 #define CenterX (self.view.frame.size.width / 2)
 // 动画时间
-#define AnimateDuration 0.25
+#define AnimateDuration 0.20
 
 #import "DZMCoverController.h"
 
@@ -42,6 +42,11 @@
  *  正在动画 default:NO
  */
 @property (nonatomic,assign) BOOL isAnimateChange;
+
+/**
+ *  判断执行pan手势
+ */
+@property (nonatomic,assign) BOOL isPan;
 
 /**
  *  临时控制器 通过代理获取回来的控制器 还没有完全展示出来的控制器
@@ -113,6 +118,8 @@
         
         self.isAnimateChange = YES;
         
+        self.isPan = YES;
+        
         // 获取将要显示的控制器
         self.tempController = [self GetPanControllerWithTouchPoint:tempPoint];
         
@@ -121,7 +128,7 @@
         
     }else if (pan.state == UIGestureRecognizerStateChanged) { // 手势移动
         
-        if (self.openAnimate) {
+        if (self.openAnimate && self.isPan) {
             
             if (self.tempController) {
                 
@@ -138,35 +145,41 @@
         
     }else{ // 手势结束
         
-        if (self.openAnimate) { // 动画
+        if (self.isPan) {
             
-            if (self.tempController) {
-                
-                BOOL isSuccess = YES;
-                
-                if (self.isLeft) {
+            // 结束Pan手势
+            self.isPan = NO;
+            
+            if (self.openAnimate) { // 动画
+          
+                if (self.tempController) {
                     
-                    if (self.tempController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                    BOOL isSuccess = YES;
+                    
+                    if (self.isLeft) {
                         
-                        isSuccess = NO;
+                        if (self.tempController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                            
+                            isSuccess = NO;
+                        }
+                        
+                    }else{
+                        
+                        if (self.currentController.view.frame.origin.x >= -1) {
+                            
+                            isSuccess = NO;
+                        }
                     }
                     
-                }else{
-                    
-                    if (self.currentController.view.frame.origin.x >= -1) {
-                        
-                        isSuccess = NO;
-                    }
+                    // 手势结束
+                    [self GestureSuccess:isSuccess animated:YES];
                 }
                 
+            }else{ // 无动画
+                
                 // 手势结束
-                [self GestureSuccess:isSuccess animated:YES];
+                [self GestureSuccess:YES animated:self.openAnimate];
             }
-            
-        }else{ // 无动画
-            
-            // 手势结束
-            [self GestureSuccess:YES animated:self.openAnimate];
         }
     }
 }

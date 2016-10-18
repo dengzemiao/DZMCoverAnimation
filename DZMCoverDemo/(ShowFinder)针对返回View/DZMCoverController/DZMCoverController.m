@@ -44,6 +44,11 @@
 @property (nonatomic,assign) BOOL isAnimateChange;
 
 /**
+ *  判断执行pan手势
+ */
+@property (nonatomic,assign) BOOL isPan;
+
+/**
  *  临时View 通过代理获取回来的View 还没有完全展示出来的View
  */
 @property (nonatomic,strong,nullable) UIView *tempView;
@@ -113,6 +118,8 @@
         
         self.isAnimateChange = YES;
         
+        self.isPan = YES;
+        
         // 获取将要显示的View
         self.tempView = [self GetPanViewWithTouchPoint:tempPoint];
         
@@ -121,7 +128,7 @@
         
     }else if (pan.state == UIGestureRecognizerStateChanged) { // 手势移动
         
-        if (self.openAnimate) {
+        if (self.openAnimate && self.isPan) {
             
             if (self.tempView) {
                 
@@ -138,36 +145,42 @@
         
     }else{ // 手势结束
         
-        if (self.openAnimate) { // 动画
+        if (self.isPan) {
             
-            if (self.tempView) {
+            // 结束Pan手势
+            self.isPan = NO;
+            
+            if (self.openAnimate) { // 动画
                 
-                BOOL isSuccess = YES;
-                
-                if (self.isLeft) {
+                if (self.tempView) {
                     
-                    if (self.tempView.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                    BOOL isSuccess = YES;
+                    
+                    if (self.isLeft) {
                         
-                        isSuccess = NO;
+                        if (self.tempView.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                            
+                            isSuccess = NO;
+                        }
+                        
+                    }else{
+                        
+                        if (self.currentView.frame.origin.x >= -1) {
+                            
+                            isSuccess = NO;
+                        }
                     }
                     
-                }else{
-                    
-                    if (self.currentView.frame.origin.x >= -1) {
-                        
-                        isSuccess = NO;
-                    }
+                    // 手势结束
+                    [self GestureSuccess:isSuccess animated:self.openAnimate];
                 }
                 
+            }else{
+                
                 // 手势结束
-                [self GestureSuccess:isSuccess animated:self.openAnimate];
+                [self GestureSuccess:YES animated:self.openAnimate];
+                
             }
-            
-        }else{
-            
-            // 手势结束
-            [self GestureSuccess:YES animated:self.openAnimate];
-            
         }
     }
     
