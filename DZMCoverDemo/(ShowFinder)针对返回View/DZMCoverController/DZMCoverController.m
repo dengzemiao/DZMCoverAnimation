@@ -129,7 +129,6 @@
         
     }else if (pan.state == UIGestureRecognizerStateChanged) { // 手势移动
         
-        
         if (fabs(tempPoint.x) > 0.01) { // 滚动有值了
             
             // 获取将要显示的控制器
