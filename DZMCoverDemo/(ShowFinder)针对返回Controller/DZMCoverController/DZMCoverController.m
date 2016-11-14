@@ -49,6 +49,11 @@
 @property (nonatomic,assign) BOOL isPan;
 
 /**
+ *  手势是否重新开始识别
+ */
+@property (nonatomic,assign) BOOL isPanBegin;
+
+/**
  *  临时控制器 通过代理获取回来的控制器 还没有完全展示出来的控制器
  */
 @property (nonatomic,strong,nullable) UIViewController *tempController;
@@ -118,27 +123,39 @@
         
         self.isAnimateChange = YES;
         
+        self.isPanBegin = YES;
+        
         self.isPan = YES;
-        
-        // 获取将要显示的控制器
-        self.tempController = [self GetPanControllerWithTouchPoint:tempPoint];
-        
-        // 添加
-        [self addController:self.tempController];
         
     }else if (pan.state == UIGestureRecognizerStateChanged) { // 手势移动
         
-        if (self.openAnimate && self.isPan) {
+        if (fabs(tempPoint.x) > 0.01) { // 滚动有值了
             
-            if (self.tempController) {
+            // 获取将要显示的控制器
+            if (self.isPanBegin) {
                 
-                if (self.isLeft) {
+                self.isPanBegin = NO;
+                
+                // 获取将要显示的控制器
+                self.tempController = [self GetPanControllerWithTouchPoint:tempPoint];
+                
+                // 添加
+                [self addController:self.tempController];
+            }
+            
+            // 判断显示
+            if (self.openAnimate && self.isPan) {
+                
+                if (self.tempController) {
                     
-                    self.tempController.view.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
-                    
-                }else{
-                    
-                    self.currentController.view.frame = CGRectMake(tempPoint.x > 0 ? 0 : tempPoint.x, 0, ViewWidth, ViewHeight);
+                    if (self.isLeft) {
+                        
+                        self.tempController.view.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
+                        
+                    }else{
+                        
+                        self.currentController.view.frame = CGRectMake(tempPoint.x > 0 ? 0 : tempPoint.x, 0, ViewWidth, ViewHeight);
+                    }
                 }
             }
         }
@@ -370,7 +387,7 @@
 - (UIViewController * _Nullable)GetPanControllerWithTouchPoint:(CGPoint)touchPoint
 {
     UIViewController *vc = nil;
-    
+   
     if (touchPoint.x > 0) { // 左边
         
         self.isLeft = YES;
@@ -390,6 +407,7 @@
             
             vc = [self.delegate coverController:self getBelowControllerWithCurrentController:self.currentController];
         }
+        
     }
     
     if (!vc) {

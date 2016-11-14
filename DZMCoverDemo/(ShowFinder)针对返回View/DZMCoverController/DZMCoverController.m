@@ -49,6 +49,11 @@
 @property (nonatomic,assign) BOOL isPan;
 
 /**
+ *  手势是否重新开始识别
+ */
+@property (nonatomic,assign) BOOL isPanBegin;
+
+/**
  *  临时View 通过代理获取回来的View 还没有完全展示出来的View
  */
 @property (nonatomic,strong,nullable) UIView *tempView;
@@ -118,31 +123,43 @@
         
         self.isAnimateChange = YES;
         
+        self.isPanBegin = YES;
+        
         self.isPan = YES;
-        
-        // 获取将要显示的View
-        self.tempView = [self GetPanViewWithTouchPoint:tempPoint];
-        
-        // 添加
-        [self addView:self.tempView];
         
     }else if (pan.state == UIGestureRecognizerStateChanged) { // 手势移动
         
-        if (self.openAnimate && self.isPan) {
+        
+        if (fabs(tempPoint.x) > 0.01) { // 滚动有值了
             
-            if (self.tempView) {
+            // 获取将要显示的控制器
+            if (self.isPanBegin) {
                 
-                if (self.isLeft) {
+                self.isPanBegin = NO;
+                
+                // 获取将要显示的View
+                self.tempView = [self GetPanViewWithTouchPoint:tempPoint];
+                
+                // 添加
+                [self addView:self.tempView];
+            }
+            
+            // 判断显示
+            if (self.openAnimate && self.isPan) {
+                
+                if (self.tempView) {
                     
-                    self.tempView.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
-                    
-                }else{
-                    
-                    self.currentView.frame = CGRectMake(tempPoint.x > 0 ? 0 : tempPoint.x, 0, ViewWidth, ViewHeight);
+                    if (self.isLeft) {
+                        
+                        self.tempView.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
+                        
+                    }else{
+                        
+                        self.currentView.frame = CGRectMake(tempPoint.x > 0 ? 0 : tempPoint.x, 0, ViewWidth, ViewHeight);
+                    }
                 }
             }
         }
-        
     }else{ // 手势结束
         
         if (self.isPan) {
