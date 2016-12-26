@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DZMCoverDemo/(ShowFinder)&#x9488;&#x5bf9;&#x8fd4;&#x56de;Controller/DZMCoverController/DZMCoverController.m"
-            timestampString = "500788351.594181"
+            timestampString = "504419495.973587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
-            landmarkName = "-GetPanControllerWithTouchPoint:"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-touchTap:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

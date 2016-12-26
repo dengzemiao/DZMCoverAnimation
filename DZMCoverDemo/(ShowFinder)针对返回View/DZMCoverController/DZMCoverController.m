@@ -189,6 +189,10 @@
                     
                     // 手势结束
                     [self GestureSuccess:isSuccess animated:self.openAnimate];
+                    
+                }else{
+                    
+                    self.isAnimateChange = NO;
                 }
                 
             }else{

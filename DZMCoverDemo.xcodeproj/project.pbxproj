@@ -459,10 +459,10 @@
 				DEVELOPMENT_TEAM = 2PPP498VY6;
 				INFOPLIST_FILE = DZMCoverDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.gamesm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4c6220c-be0b-4fd1-9784-775d0ab2cd74";
-				PROVISIONING_PROFILE_SPECIFIER = SM_Deve_P;
+				PROVISIONING_PROFILE = "fd1aa698-6457-4ca2-86a6-9ad1f8197f2a";
+				PROVISIONING_PROFILE_SPECIFIER = HJ_APPTest_Dev_P;
 			};
 			name = Debug;
 		};
@@ -475,10 +475,10 @@
 				DEVELOPMENT_TEAM = 2PPP498VY6;
 				INFOPLIST_FILE = DZMCoverDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.gamesm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hanjue.appTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4c6220c-be0b-4fd1-9784-775d0ab2cd74";
-				PROVISIONING_PROFILE_SPECIFIER = SM_Deve_P;
+				PROVISIONING_PROFILE = "fd1aa698-6457-4ca2-86a6-9ad1f8197f2a";
+				PROVISIONING_PROFILE_SPECIFIER = HJ_APPTest_Dev_P;
 			};
 			name = Release;
 		};
