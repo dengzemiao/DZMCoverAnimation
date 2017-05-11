@@ -51,7 +51,7 @@
 /**
  *  临时控制器 通过代理获取回来的控制器 还没有完全展示出来的控制器
  */
-@property (nonatomic,strong,nullable) UIViewController *tempController;
+@property (nonatomic,strong,nullable) UIViewController *pendingController;
 
 @end
 
@@ -132,20 +132,26 @@
                 self.isPanBegin = NO;
                 
                 // 获取将要显示的控制器
-                self.tempController = [self GetPanControllerWithTouchPoint:tempPoint];
+                self.pendingController = [self GetPanControllerWithTouchPoint:tempPoint];
+                
+                // 将要显示的控制器
+                if ([self.delegate respondsToSelector:@selector(coverController:willTransitionToPendingController:)]) {
+                    
+                    [self.delegate coverController:self willTransitionToPendingController:self.pendingController];
+                }
                 
                 // 添加
-                [self addController:self.tempController];
+                [self addController:self.pendingController];
             }
             
             // 判断显示
             if (self.openAnimate && self.isPan) {
                 
-                if (self.tempController) {
+                if (self.pendingController) {
                     
                     if (self.isLeft) {
                         
-                        self.tempController.view.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
+                        self.pendingController.view.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
                         
                     }else{
                         
@@ -164,13 +170,13 @@
             
             if (self.openAnimate) { // 动画
           
-                if (self.tempController) {
+                if (self.pendingController) {
                     
                     BOOL isSuccess = YES;
                     
                     if (self.isLeft) {
                         
-                        if (self.tempController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                        if (self.pendingController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
                             
                             isSuccess = NO;
                         }
@@ -210,10 +216,16 @@
     CGPoint touchPoint = [tap locationInView:self.view];
     
     // 获取将要显示的控制器
-    self.tempController = [self GetTapControllerWithTouchPoint:touchPoint];
+    self.pendingController = [self GetTapControllerWithTouchPoint:touchPoint];
+    
+    // 将要显示的控制器
+    if ([self.delegate respondsToSelector:@selector(coverController:willTransitionToPendingController:)]) {
+        
+        [self.delegate coverController:self willTransitionToPendingController:self.pendingController];
+    }
     
     // 添加
-    [self addController:self.tempController];
+    [self addController:self.pendingController];
     
     // 手势结束
     [self GestureSuccess:YES animated:self.openAnimate];
@@ -224,7 +236,7 @@
  */
 - (void)GestureSuccess:(BOOL)isSuccess animated:(BOOL)animated
 {
-    if (self.tempController) {
+    if (self.pendingController) {
         
         if (self.isLeft) { // 左边
             
@@ -236,11 +248,11 @@
                     
                     if (isSuccess) {
                         
-                        weakSelf.tempController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                        weakSelf.pendingController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
                         
                     }else{
                         
-                        weakSelf.tempController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                        weakSelf.pendingController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
                     }
                     
                 } completion:^(BOOL finished) {
@@ -252,11 +264,11 @@
                 
                 if (isSuccess) {
                     
-                    self.tempController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                    self.pendingController.view.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
                     
                 }else{
                     
-                    self.tempController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                    self.pendingController.view.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
                 }
                 
                 [self animateSuccess:isSuccess];
@@ -312,19 +324,19 @@
         
         [self.currentController removeFromParentViewController];
         
-        _currentController = self.tempController;
+        _currentController = self.pendingController;
         
-        self.tempController = nil;
+        self.pendingController = nil;
         
         self.isAnimateChange = NO;
         
     }else{
         
-        [self.tempController.view removeFromSuperview];
+        [self.pendingController.view removeFromSuperview];
         
-        [self.tempController removeFromParentViewController];
+        [self.pendingController removeFromParentViewController];
         
-        self.tempController = nil;
+        self.pendingController = nil;
         
         self.isAnimateChange = NO;
     }
@@ -448,7 +460,7 @@
         self.isLeft = isAbove;
         
         // 记录
-        self.tempController = controller;
+        self.pendingController = controller;
         
         // 添加
         [self addController:controller];
@@ -546,10 +558,10 @@
     }
     
     // 移除临时控制器
-    if (self.tempController) {
-        [self.tempController.view removeFromSuperview];
-        [self.tempController removeFromParentViewController];
-        self.tempController = nil;
+    if (self.pendingController) {
+        [self.pendingController.view removeFromSuperview];
+        [self.pendingController removeFromParentViewController];
+        self.pendingController = nil;
     }
 }
 

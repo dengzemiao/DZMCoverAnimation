@@ -32,6 +32,14 @@
 - (void)coverController:(DZMCoverController * _Nonnull)coverController currentController:(UIViewController * _Nullable)currentController finish:(BOOL)isFinish;
 
 /**
+ *  将要显示的控制器
+ *
+ *  @param coverController   coverController
+ *  @param pendingController 将要显示的控制器
+ */
+- (void)coverController:(DZMCoverController * _Nonnull)coverController willTransitionToPendingController:(UIViewController * _Nullable)pendingController;
+
+/**
  *  获取上一个控制器
  *
  *  @param coverController   coverController

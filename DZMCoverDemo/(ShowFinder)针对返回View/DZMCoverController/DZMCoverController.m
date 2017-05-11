@@ -51,7 +51,7 @@
 /**
  *  临时View 通过代理获取回来的View 还没有完全展示出来的View
  */
-@property (nonatomic,strong,nullable) UIView *tempView;
+@property (nonatomic,strong,nullable) UIView *pendingView;
 
 @end
 
@@ -132,20 +132,26 @@
                 self.isPanBegin = NO;
                 
                 // 获取将要显示的View
-                self.tempView = [self GetPanViewWithTouchPoint:tempPoint];
+                self.pendingView = [self GetPanViewWithTouchPoint:tempPoint];
+                
+                // 将要显示的View
+                if ([self.delegate respondsToSelector:@selector(coverController:willTransitionToPendingView:)]) {
+                    
+                    [self.delegate coverController:self willTransitionToPendingView:self.pendingView];
+                }
                 
                 // 添加
-                [self addView:self.tempView];
+                [self addView:self.pendingView];
             }
             
             // 判断显示
             if (self.openAnimate && self.isPan) {
                 
-                if (self.tempView) {
+                if (self.pendingView) {
                     
                     if (self.isLeft) {
                         
-                        self.tempView.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
+                        self.pendingView.frame = CGRectMake(touchPoint.x - ViewWidth, 0, ViewWidth, ViewHeight);
                         
                     }else{
                         
@@ -163,13 +169,13 @@
             
             if (self.openAnimate) { // 动画
                 
-                if (self.tempView) {
+                if (self.pendingView) {
                     
                     BOOL isSuccess = YES;
                     
                     if (self.isLeft) {
                         
-                        if (self.tempView.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
+                        if (self.pendingView.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
                             
                             isSuccess = NO;
                         }
@@ -211,10 +217,16 @@
     CGPoint touchPoint = [tap locationInView:self.view];
     
     // 获取将要显示的View
-    self.tempView = [self GetTapViewWithTouchPoint:touchPoint];
+    self.pendingView = [self GetTapViewWithTouchPoint:touchPoint];
+    
+    // 将要显示的View
+    if ([self.delegate respondsToSelector:@selector(coverController:willTransitionToPendingView:)]) {
+        
+        [self.delegate coverController:self willTransitionToPendingView:self.pendingView];
+    }
     
     // 添加
-    [self addView:self.tempView];
+    [self addView:self.pendingView];
     
     // 手势结束
     [self GestureSuccess:YES animated:self.openAnimate];
@@ -225,7 +237,7 @@
  */
 - (void)GestureSuccess:(BOOL)isSuccess animated:(BOOL)animated
 {
-    if (self.tempView) {
+    if (self.pendingView) {
         
         if (self.isLeft) { // 左边
             
@@ -237,11 +249,11 @@
                     
                     if (isSuccess) {
                         
-                        weakSelf.tempView.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                        weakSelf.pendingView.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
                         
                     }else{
                         
-                        weakSelf.tempView.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                        weakSelf.pendingView.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
                     }
                     
                 } completion:^(BOOL finished) {
@@ -253,11 +265,11 @@
                 
                 if (isSuccess) {
                     
-                    self.tempView.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
+                    self.pendingView.frame = CGRectMake(0, 0, ViewWidth, ViewHeight);
                     
                 }else{
                     
-                    self.tempView.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
+                    self.pendingView.frame = CGRectMake(-ViewWidth, 0, ViewWidth, ViewHeight);
                 }
                 
                 [self animateSuccess:isSuccess];
@@ -311,17 +323,17 @@
         
         [self.currentView removeFromSuperview];
         
-        _currentView = self.tempView;
+        _currentView = self.pendingView;
         
-        self.tempView = nil;
+        self.pendingView = nil;
         
         self.isAnimateChange = NO;
         
     }else{
         
-        [self.tempView removeFromSuperview];
+        [self.pendingView removeFromSuperview];
         
-        self.tempView = nil;
+        self.pendingView = nil;
         
         self.isAnimateChange = NO;
     }
@@ -444,7 +456,7 @@
         self.isLeft = isAbove;
         
         // 记录
-        self.tempView = currentView;
+        self.pendingView = currentView;
         
         // 添加
         [self addView:currentView];
@@ -539,9 +551,9 @@
     }
     
     // 移除临时View
-    if (self.tempView) {
-        [self.tempView removeFromSuperview];
-        self.tempView = nil;
+    if (self.pendingView) {
+        [self.pendingView removeFromSuperview];
+        self.pendingView = nil;
     }
 }
 

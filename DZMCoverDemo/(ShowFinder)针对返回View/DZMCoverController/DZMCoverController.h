@@ -32,6 +32,14 @@
 - (void)coverController:(DZMCoverController * _Nonnull)coverController currentView:(UIView * _Nullable)currentView finish:(BOOL)isFinish;
 
 /**
+ *  将要显示的View
+ *
+ *  @param coverController   coverController
+ *  @param pendingView       将要显示的View
+ */
+- (void)coverController:(DZMCoverController * _Nonnull)coverController willTransitionToPendingView:(UIView * _Nullable)pendingView;
+
+/**
  *  获取上一个View
  *
  *  @param coverController   coverController
