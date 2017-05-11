@@ -6,22 +6,18 @@
 //  Copyright © 2016年 DZM. All rights reserved.
 //
 
-// 屏幕宽
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-// 屏幕高
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
 // View宽
 #define ViewWidth self.view.frame.size.width
+
 // View高
 #define ViewHeight self.view.frame.size.height
-// View中间X
-#define CenterX (self.view.frame.size.width / 2)
+
 // 动画时间
-#define AnimateDuration 0.25
+#define AnimateDuration 0.20
 
 #import "DZMCoverController.h"
 
-@interface DZMCoverController ()
+@interface DZMCoverController ()<UIGestureRecognizerDelegate>
 
 /**
  *  左拉右拉手势
@@ -80,6 +76,7 @@
     self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchTap:)];
     [self.view addGestureRecognizer:self.pan];
     [self.view addGestureRecognizer:self.tap];
+    self.tap.delegate = self;
     
     // 启用手势
     self.gestureRecognizerEnabled = YES;
@@ -356,7 +353,7 @@
 {
     UIView *view = nil;
     
-    if (touchPoint.x < CenterX) { // 左边
+    if (touchPoint.x < ViewWidth / 3) { // 左边
         
         self.isLeft = YES;
         
@@ -366,7 +363,7 @@
             view = [self.delegate coverController:self getAboveControllerWithCurrentView:self.currentView];
         }
         
-    }else{ // 右边
+    }else if (touchPoint.x > (ViewWidth - ViewWidth / 3)){ // 右边
         
         self.isLeft = NO;
         
@@ -377,7 +374,7 @@
         }
     }
     
-    if (!vc) {
+    if (!view) {
         
         self.isAnimateChange = NO;
     }
@@ -417,7 +414,7 @@
         }
     }
     
-    if (!vc) {
+    if (!view) {
         
         self.isAnimateChange = NO;
     }
@@ -531,6 +528,25 @@
         view.layer.shadowOpacity = 0.5; // 不透明度
         view.layer.shadowRadius = 10.0; // 半径
     }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] && [gestureRecognizer isEqual:self.tap]) {
+        
+        CGFloat tempX = ViewWidth / 3;
+        
+        CGPoint touchPoint = [self.tap locationInView:self.view];
+        
+        if (touchPoint.x > tempX && touchPoint.x < (ViewWidth - tempX)) {
+            
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
