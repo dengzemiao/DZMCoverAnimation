@@ -432,7 +432,7 @@
  *
  *  @param controller 设置显示的控制器
  */
-- (void)setController:(UIViewController * _Nonnull)controller
+- (void)setController:(UIViewController * _Nullable)controller
 {
     [self setController:controller animated:NO isAbove:YES];
 }
@@ -444,44 +444,47 @@
  *  @param animated   是否需要动画
  *  @param isAbove    动画是否从上面显示 YES   从下面显示 NO
  */
-- (void)setController:(UIViewController * _Nonnull)controller animated:(BOOL)animated isAbove:(BOOL)isAbove
+- (void)setController:(UIViewController * _Nullable)controller animated:(BOOL)animated isAbove:(BOOL)isAbove
 {
-    if (animated && self.currentController) { // 需要动画 同时有根控制器了
+    if (controller) { // 有值
         
-        // 正在动画
-        if (self.isAnimateChange) { return; }
-        
-        self.isAnimateChange = YES;
-        
-        self.isLeft = isAbove;
-        
-        // 记录
-        self.pendingController = controller;
-        
-        // 添加
-        [self addController:controller];
-        
-        // 手势结束
-        [self GestureSuccess:YES animated:YES];
-        
-    }else{
-        
-        // 添加
-        [self addController:controller];
-        
-        // 修改frame
-        controller.view.frame = self.view.bounds;
-        
-        // 当前控制器有值 进行删除
-        if (_currentController) {
+        if (animated && self.currentController) { // 需要动画 同时有根控制器了
             
-            [_currentController.view removeFromSuperview];
+            // 正在动画
+            if (self.isAnimateChange) { return; }
             
-            [_currentController removeFromParentViewController];
+            self.isAnimateChange = YES;
+            
+            self.isLeft = isAbove;
+            
+            // 记录
+            self.pendingController = controller;
+            
+            // 添加
+            [self addController:controller];
+            
+            // 手势结束
+            [self GestureSuccess:YES animated:YES];
+            
+        }else{
+            
+            // 添加
+            [self addController:controller];
+            
+            // 修改frame
+            controller.view.frame = self.view.bounds;
+            
+            // 当前控制器有值 进行删除
+            if (_currentController) {
+                
+                [_currentController.view removeFromSuperview];
+                
+                [_currentController removeFromParentViewController];
+            }
+            
+            // 赋值记录
+            _currentController = controller;
         }
-        
-        // 赋值记录
-        _currentController = controller;
     }
 }
 

@@ -93,7 +93,7 @@
  *
  *  @param currentView 设置显示的View
  */
-- (void)setCurrentView:(UIView * _Nonnull)currentView;
+- (void)setCurrentView:(UIView * _Nullable)currentView;
 
 /**
  *  手动设置显示View
@@ -102,6 +102,6 @@
  *  @param animated    是否需要动画
  *  @param isAbove     动画是否从上面显示 YES   从下面显示 NO
  */
-- (void)setCurrentView:(UIView * _Nonnull)currentView animated:(BOOL)animated isAbove:(BOOL)isAbove;
+- (void)setCurrentView:(UIView * _Nullable)currentView animated:(BOOL)animated isAbove:(BOOL)isAbove;
 
 @end

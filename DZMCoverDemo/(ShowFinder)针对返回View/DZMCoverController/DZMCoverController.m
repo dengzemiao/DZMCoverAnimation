@@ -429,7 +429,7 @@
  *
  *  @param currentView 设置显示的View
  */
-- (void)setCurrentView:(UIView * _Nonnull)currentView
+- (void)setCurrentView:(UIView * _Nullable)currentView
 {
     [self setCurrentView:currentView animated:NO isAbove:YES];
 }
@@ -441,44 +441,47 @@
  *  @param animated    是否需要动画
  *  @param isAbove     动画是否从上面显示 YES   从下面显示 NO
  */
-- (void)setCurrentView:(UIView * _Nonnull)currentView animated:(BOOL)animated isAbove:(BOOL)isAbove;
+- (void)setCurrentView:(UIView * _Nullable)currentView animated:(BOOL)animated isAbove:(BOOL)isAbove;
 {
-    if (animated && self.currentView) { // 需要动画 同时有根View了
+    if (currentView) { // 有值
         
-        // 正在动画
-        if (self.isAnimateChange) { return; }
-        
-        self.isAnimateChange = YES;
-        
-        self.isLeft = isAbove;
-        
-        // 记录
-        self.pendingView = currentView;
-        
-        // 添加
-        [self addView:currentView];
-        
-        // 手势结束
-        [self GestureSuccess:YES animated:YES];
-        
-    }else{
-        
-        // 添加
-        [self addView:currentView];
-        
-        // 修改frame
-        currentView.frame = self.view.bounds;
-        
-        // 当前View有值 进行删除
-        if (_currentView) {
+        if (animated && self.currentView) { // 需要动画 同时有根View了
             
-            [_currentView removeFromSuperview];
+            // 正在动画
+            if (self.isAnimateChange) { return; }
             
-            _currentView = nil;
+            self.isAnimateChange = YES;
+            
+            self.isLeft = isAbove;
+            
+            // 记录
+            self.pendingView = currentView;
+            
+            // 添加
+            [self addView:currentView];
+            
+            // 手势结束
+            [self GestureSuccess:YES animated:YES];
+            
+        }else{
+            
+            // 添加
+            [self addView:currentView];
+            
+            // 修改frame
+            currentView.frame = self.view.bounds;
+            
+            // 当前View有值 进行删除
+            if (_currentView) {
+                
+                [_currentView removeFromSuperview];
+                
+                _currentView = nil;
+            }
+            
+            // 赋值记录
+            _currentView = currentView;
         }
-        
-        // 赋值记录
-        _currentView = currentView;
     }
 }
 
