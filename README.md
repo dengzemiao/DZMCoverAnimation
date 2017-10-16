@@ -17,16 +17,16 @@
 
 ***
 #### 覆盖效果:
-![CarouselView in action](icon0.png)
+![覆盖效果](icon0.png)
 
 ***
 #### 控制器 - 全屏覆盖效果：
-![CarouselView in action](icon1.gif)
+![控制器 - 全屏覆盖效果](icon1.gif)
 
 ***
 #### 控制器 - 自定义Frame - 自定义按钮翻页:
-![CarouselView in action](icon2.gif)
+![控制器 - 自定义Frame - 自定义按钮翻页](icon2.gif)
 
 ***
 #### View - 覆盖效果:
-![CarouselView in action](icon3.gif)
+![View - 覆盖效果](icon3.gif)
