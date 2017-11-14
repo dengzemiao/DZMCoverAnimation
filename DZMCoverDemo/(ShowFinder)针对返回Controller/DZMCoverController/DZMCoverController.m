@@ -45,6 +45,11 @@
 @property (nonatomic,assign) BOOL isPanBegin;
 
 /**
+ *  动画状态
+ */
+@property (nonatomic,assign) BOOL isAnimateChange;
+
+/**
  *  临时控制器 通过代理获取回来的控制器 还没有完全展示出来的控制器
  */
 @property (nonatomic,strong,nullable) UIViewController *pendingController;

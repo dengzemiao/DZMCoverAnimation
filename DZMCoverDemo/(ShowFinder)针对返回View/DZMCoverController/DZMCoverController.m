@@ -45,6 +45,11 @@
 @property (nonatomic,assign) BOOL isPanBegin;
 
 /**
+ *  动画状态
+ */
+@property (nonatomic,assign) BOOL isAnimateChange;
+
+/**
  *  临时View 通过代理获取回来的View 还没有完全展示出来的View
  */
 @property (nonatomic,strong,nullable) UIView *pendingView;
