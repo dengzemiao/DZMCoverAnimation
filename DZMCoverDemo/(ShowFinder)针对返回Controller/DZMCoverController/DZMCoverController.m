@@ -54,6 +54,16 @@
  */
 @property (nonatomic,strong,nullable) UIViewController *pendingController;
 
+/**
+ *  移动中的触摸位置
+ */
+@property (nonatomic,assign) CGPoint moveTouchPoint;
+
+/**
+ *  移动中的差值
+ */
+@property (nonatomic,assign) CGFloat moveSpaceX;
+
 @end
 
 @implementation DZMCoverController
@@ -111,6 +121,15 @@
     
     // 用于计算位置
     CGPoint touchPoint = [pan locationInView:self.view];
+    
+    // 比较获取差值
+    if (!CGPointEqualToPoint(self.moveTouchPoint, CGPointZero) && (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged)) {
+        
+        self.moveSpaceX = touchPoint.x - self.moveTouchPoint.x;
+    }
+    
+    // 记录位置
+    self.moveTouchPoint = touchPoint;
     
     if (pan.state == UIGestureRecognizerStateBegan) { // 手势开始
         
@@ -180,6 +199,13 @@
                         if (self.pendingController.view.frame.origin.x <= -(ViewWidth - ViewWidth*0.18)) {
                             
                             isSuccess = NO;
+                            
+                        }else{
+                            
+                            if (self.moveSpaceX < 0) {
+                                
+                                isSuccess = NO;
+                            }
                         }
                         
                     }else{
@@ -204,6 +230,10 @@
                 [self GestureSuccess:YES animated:self.openAnimate];
             }
         }
+        
+        // 清空记录
+        self.moveTouchPoint = CGPointZero;
+        self.moveSpaceX = 0;
     }
 }
 
