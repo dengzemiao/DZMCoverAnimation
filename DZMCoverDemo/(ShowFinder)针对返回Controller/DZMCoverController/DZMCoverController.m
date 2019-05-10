@@ -136,7 +136,8 @@
         // 正在动画
         if (self.isAnimateChange) { return; }
         
-        self.isAnimateChange = YES;
+        // 放弃动画时则不需要设置正在动画中
+        if (self.openAnimate) { self.isAnimateChange = YES; }
         
         self.isPanBegin = YES;
         
@@ -242,7 +243,8 @@
     // 正在动画
     if (self.isAnimateChange) { return; }
     
-    self.isAnimateChange = YES;
+    // 放弃动画时则不需要设置正在动画中
+    if (self.openAnimate) { self.isAnimateChange = YES; }
     
     CGPoint touchPoint = [tap locationInView:self.view];
     
@@ -483,7 +485,7 @@
 {
     if (controller) { // 有值
         
-        if (animated && self.currentController) { // 需要动画 同时有根控制器了
+        if (animated && self.openAnimate && self.currentController) { // 需要动画 允许手势动画 同时有根控制器了
             
             // 正在动画
             if (self.isAnimateChange) { return; }
