@@ -15,7 +15,7 @@
 // 左边上一页点击区域
 #define LeftWidth (ViewWidth / 3)
 
-// 左边下一页点击区域
+// 右边下一页点击区域
 #define RightWidth (ViewWidth / 3)
 
 // 动画时间
