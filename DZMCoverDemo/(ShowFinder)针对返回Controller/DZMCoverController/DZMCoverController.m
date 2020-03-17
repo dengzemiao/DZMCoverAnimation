@@ -12,6 +12,12 @@
 // View高
 #define ViewHeight self.view.frame.size.height
 
+// 左边上一页点击区域
+#define LeftWidth (ViewWidth / 3)
+
+// 左边下一页点击区域
+#define RightWidth (ViewWidth / 3)
+
 // 动画时间
 #define AnimateDuration 0.20
 
@@ -392,7 +398,7 @@
 {
     UIViewController *vc = nil;
     
-    if (touchPoint.x < ViewWidth / 3) { // 左边
+    if (touchPoint.x < LeftWidth) { // 左边
         
         self.isLeft = YES;
         
@@ -402,7 +408,7 @@
             vc = [self.delegate coverController:self getAboveControllerWithCurrentController:self.currentController];
         }
         
-    }else if (touchPoint.x > (ViewWidth - ViewWidth / 3)){ // 右边
+    }else if (touchPoint.x > (ViewWidth - RightWidth)){ // 右边
         
         self.isLeft = NO;
         
@@ -581,11 +587,9 @@
 {
     if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] && [gestureRecognizer isEqual:self.tap]) {
         
-        CGFloat tempX = ViewWidth / 3;
-        
         CGPoint touchPoint = [self.tap locationInView:self.view];
         
-        if (touchPoint.x > tempX && touchPoint.x < (ViewWidth - tempX)) {
+        if (touchPoint.x > LeftWidth && touchPoint.x < (ViewWidth - RightWidth)) {
             
             return YES;
         }
